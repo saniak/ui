@@ -1,0 +1,52 @@
+<div class="container">
+    <h4 class="mt-3 text-secondary">Cart</h4>
+    <div class="card mt-3">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 50%">Item</th>
+                        <th scope="col" style="width: 15%">Price</th>
+                        <th scope="col" style="width: 10%">Quantity</th>
+                        <th scope="col" style="width: 15%">Total Price</th>
+                        <th scope="col" style="width: 10%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cartItems; let i = index">
+                        <td>
+                            {{ item.name }}
+                        </td>
+                        <td>&#8377;{{ item.price }}</td>
+                        <td>
+                            <input type="number" value="{{ item.quantity }}" min="1" id="{{ item.id }}" [(ngModel)]="item.quantity" (change)="updateCartTotal()" />
+                        </td>
+                        <td>&#8377; {{ item.quantity * item.price }}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger btn-icon" aria-label="Left Align" id="{{ item.id }}" (click)="onDeleteCartItem(item)">
+                Remove
+              </button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="cartItems.length === 0">
+                        <td colspan="5">
+                            <p class="text-center">
+                                Products are not available. Please add the product.
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            <h5 class="float-right">Total:</h5>
+                        </td>
+                        <td>
+                            <h5>{{ cartTotal }}</h5>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

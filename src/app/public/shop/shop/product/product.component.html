@@ -1,0 +1,20 @@
+<div class="row product-wrapper">
+    <div class="col-sm-6 col-md-4 col-lg-3 product-item" *ngFor="let item of productItem">
+        <div class="card">
+            <img class="card-img-top image-fluid" [src]="item.image" alt="{{ item.name }}" />
+            <div class="card-body">
+                <h5>{{ item.name }}</h5>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Price &#8377;{{ item.price }}</p>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-outline-success btn-sm float-right" role="button" (click)="onAddCart(item)">
+              Add to Cart
+            </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

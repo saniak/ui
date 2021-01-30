@@ -1,0 +1,50 @@
+<nav class="navbar navbar-light">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/">Lets get Shopping!!</a>
+        <div class="pull-right">
+            <a class="px-4" routerLink="/">Products</a>
+            <ng-template #popContent>
+                <table class="table table-responsive" style="overflow-wrap: normal;">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of items; let i = index">
+                            <td>
+                                {{ item.name }}
+                            </td>
+                            <td>&#8377;{{ item.price }}</td>
+                            <td>
+                                <input width="20%" type="number" value="{{ item.quantity }}" min="1" id="{{ item.id }}" disabled />
+                            </td>
+                            <td>&#8377; {{ item.quantity * item.price }}</td>
+                        </tr>
+                        <tr *ngIf="items.length === 0">
+                            <td colspan="5">
+                                <p class="text-center">
+                                    Your cart is empty.
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </ng-template>
+
+            <a class="btn btn-outline-primary" routerLink="cart" [ngbPopover]="popContent" [autoClose]="'outside'" triggers="mouseenter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart pb-1" viewBox="0 0 16 16">
+          <path
+            fill-rule="evenodd"
+            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+          />
+        </svg> Cart
+                <span class="badge badge-pill badge-success">{{ count }}</span>
+            </a>
+        </div>
+    </div>
+</nav>
